@@ -1,2 +1,4 @@
 # Build
 /*.gem
+/.idea
+/Gemfile.lock

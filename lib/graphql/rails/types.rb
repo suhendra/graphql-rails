@@ -41,7 +41,7 @@ module GraphQL
       end
 
       # Array of types that should be explicitly included in the schema.
-      # Useful for ensuring that interface implmentations are included.
+      # Useful for ensuring that interface implementations are included.
       def explicit
         @explicit ||= []
       end

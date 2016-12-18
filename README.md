@@ -51,6 +51,67 @@ ProjectInterface = GraphQL::ObjectType.define do
 end
 ```
 
+# Adding new mutations to schema
+
+Add `graph/operations/create_organization_with_user.rb`:
+
+```ruby
+class CreateOrganizationWithUser < GraphQL::Rails::Operations
+  
+  mutation create_organization_with_user: {token: String, user: GraphQL::Rails::Types.resolve(UserInterface)} do
+    description 'Creates organization with first user'
+
+    argument :organization, OrganizationInput, :required
+    argument :user, UserInput, :required
+
+    resolve do
+      # Some code that will actually mutate the app state
+      # then return hash with output fields defined above
+      {
+        user: User.first,
+        token: "token"
+      }
+    end
+  end
+  
+end
+```
+
+Add `graph/types/user_input.rb`
+
+```ruby
+UserInput = GraphQL::InputObjectType.define do
+  name "UserInput"
+  description "Represents user input"
+
+  argument :email, !types.String
+end
+```
+
+Add `graph/types/organization.rb`
+
+```ruby
+OrganizationInput = GraphQL::InputObjectType.define do
+  name "OrganizationInput"
+  description "Represents organization input"
+
+  argument :name, !types.String
+  argument :slug, !types.String
+end
+```
+
+Also add `graph/types/user_interface.rb`
+
+```ruby
+UserInterface = GraphQL::ObjectType.define do
+  name "User"
+  description "Represents user"
+
+  field :id, !types.ID
+  field :email, !types.String
+end
+```
+
 # Autoloading
 
 This gem adds following paths to Rails autoloading mechanism:

@@ -218,7 +218,7 @@ module GraphQL
                 end
 
                 result = result.inject({
-                  'clientMutationId' => args['clientMutationId']
+                  'clientMutationId' => args['input']['clientMutationId']
                 }) do |hash, (key, value)|
                   hash[Types.to_field_name(key)] = value
                   hash

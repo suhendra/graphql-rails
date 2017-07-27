@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<rails>.freeze, [">= 4.0.0"])
-      s.add_runtime_dependency(%q<graphql>.freeze, ["~> 0.13"])
+      s.add_runtime_dependency(%q<graphql>.freeze, [">= 1.6.6"])
       s.add_runtime_dependency(%q<graphql-relay>.freeze, ["~> 0.9"])
       s.add_runtime_dependency(%q<graphiql-rails>.freeze, ["~> 1.2"])
     else
